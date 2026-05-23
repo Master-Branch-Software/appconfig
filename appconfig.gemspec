@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.summary = "A simple ENV variable wrapper with method_missing magic"
   spec.description = "AppConfig wraps ENV variable access behind clean method calls. " \
                      "Supports boolean conversion via ? suffix, default values, and type conversions."
-  spec.homepage = "https://github.com/rayparkerbassplayer/appconfig"
+  spec.homepage = "https://github.com/Master-Branch-Software/appconfig"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 3.0.0"
 
