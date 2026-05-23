@@ -30,12 +30,12 @@ require_relative "appconfig/to_bool"
 #
 #   A default value can be supplied. If an ENV variable is missing or empty
 #   the default will be returned:
-#   Example: AppConfig.host(default: "http://localhost:3000")
+#   Example: AppConfig.host(:default => "http://localhost:3000")
 #
 #   conversion
 #
 #   A conversion can be supplied for the value:
-#   Example: AppConfig.port(conversion: :to_i)
+#   Example: AppConfig.port(:conversion => :to_i)
 #     --> returns 3000 v "3000"
 #   NOTE: Normal conversion rules apply and no special exception handling is
 #   offered internally.
@@ -111,11 +111,15 @@ class AppConfig
     result = ENV[env_variable.upcase].to_s.strip
 
     if boolean_conversion
-      result = options[:default] if options && result.empty?
+      if options && result.empty?
+        result = options[:default]
+      end
 
       result.to_bool
     elsif options
-      result = options[:default] if result.empty?
+      if result.empty?
+        result = options[:default]
+      end
 
       options[:conversion] ? result.send(options[:conversion]) : result
     else

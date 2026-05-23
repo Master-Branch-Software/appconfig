@@ -44,19 +44,19 @@ Missing or empty variables return `false`.
 ### Default values
 
 ```ruby
-AppConfig.host(default: "http://localhost:3000")
+AppConfig.host(:default => "http://localhost:3000")
 ```
 
 ### Type conversion
 
 ```ruby
-AppConfig.port(conversion: :to_i)  # => 3000
+AppConfig.port(:conversion => :to_i)  # => 3000
 ```
 
 ### Combined
 
 ```ruby
-AppConfig.port(default: "3000", conversion: :to_i)
+AppConfig.port(:default => "3000", :conversion => :to_i)
 ```
 
 ## YAML configuration file

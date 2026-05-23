@@ -58,13 +58,13 @@ describe AppConfig do
         value = "false"
 
         ClimateControl.modify(env_variable => value) do
-          expect(AppConfig.send("#{env_variable.downcase}?", conversion: :to_bool)).to be false
+          expect(AppConfig.send("#{env_variable.downcase}?", :conversion => :to_bool)).to be false
         end
 
         value = "FALSE"
 
         ClimateControl.modify(env_variable => value) do
-          expect(AppConfig.send("#{env_variable.downcase}?", conversion: :to_bool)).to be false
+          expect(AppConfig.send("#{env_variable.downcase}?", :conversion => :to_bool)).to be false
         end
       end
 
@@ -73,7 +73,7 @@ describe AppConfig do
         value = 1234
 
         ClimateControl.modify(env_variable => value.to_s) do
-          expect(AppConfig.send("#{env_variable.downcase}", conversion: :to_i)).to eq value
+          expect(AppConfig.send("#{env_variable.downcase}", :conversion => :to_i)).to eq value
         end
       end
     end
@@ -84,7 +84,7 @@ describe AppConfig do
         value = 1234
 
         ClimateControl.modify(env_variable => value.to_s) do
-          expect(AppConfig.send("#{env_variable.downcase}", default: value.to_s.reverse, conversion: :to_i)).to eq value
+          expect(AppConfig.send("#{env_variable.downcase}", :default => value.to_s.reverse, :conversion => :to_i)).to eq value
         end
       end
 
@@ -93,7 +93,7 @@ describe AppConfig do
         value = 1234
 
         ClimateControl.modify(env_variable => nil) do
-          expect(AppConfig.send("#{env_variable.downcase}", default: value, conversion: :to_i)).to eq value
+          expect(AppConfig.send("#{env_variable.downcase}", :default => value, :conversion => :to_i)).to eq value
         end
       end
     end
