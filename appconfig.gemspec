@@ -18,7 +18,7 @@ Gem::Specification.new do |spec|
   spec.files = Dir["lib/**/*", "LICENSE.txt", "README.md"]
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "ostruct"
+  spec.add_dependency "ostruct", ">= 0.2"
 
   spec.add_development_dependency "climate_control", "~> 1.0"
   spec.add_development_dependency "rake", "~> 13.0"
