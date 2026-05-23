@@ -52,6 +52,22 @@ describe AppConfig do
       end
     end
 
+    it "handles truthy variants (on, yes, 1)" do
+      ["on", "ON", "yes", "YES", "1"].each do |truthy_value|
+        ClimateControl.modify("MY_VARIABLE" => truthy_value) do
+          expect(AppConfig.my_variable?).to be true
+        end
+      end
+    end
+
+    it "handles falsy variants (off, no, 0)" do
+      ["off", "OFF", "no", "NO", "0"].each do |falsy_value|
+        ClimateControl.modify("MY_VARIABLE" => falsy_value) do
+          expect(AppConfig.my_variable?).to be false
+        end
+      end
+    end
+
     describe "and conversions" do
       it "returns a bool properly" do
         env_variable = "MY_VARIABLE"

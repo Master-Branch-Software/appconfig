@@ -16,6 +16,16 @@ Or install directly:
 gem install appconfig
 ```
 
+## Use Cases
+
+AppConfig supports two general approaches to configuration. You can use both together, but good hygiene is to choose your horse:
+
+1. **ENV path** — Read configuration directly from environment variables. No setup required; just call `AppConfig.my_variable` and it reads `ENV["MY_VARIABLE"]`. Ideal when your deployment injects all configuration via the environment.
+
+2. **YAML file path** — Load a YAML configuration file keyed by `RAILS_ENV`. Provides structured, nested configuration with dot-notation access. Ideal when you prefer a single config file per environment.
+
+When both are in play, YAML values take precedence over ENV variables.
+
 ## Usage
 
 ### Basic string access
@@ -38,6 +48,11 @@ AppConfig.feature_enabled?  # => true
 # ENV["FEATURE_ENABLED"] = "false"
 AppConfig.feature_enabled?  # => false
 ```
+
+Boolean conversion is case-insensitive and recognizes these values:
+
+- **Truthy:** `true`, `on`, `yes`, `1`
+- **Falsy:** `false`, `off`, `no`, `0`, empty string
 
 Missing or empty variables return `false`.
 

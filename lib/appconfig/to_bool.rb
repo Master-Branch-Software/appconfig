@@ -5,10 +5,13 @@
 # that boolean-valued ENV strings can be converted cleanly.
 
 class String
+  TRUTHY_VALUES = /\A(true|on|yes|1)\z/i
+  FALSY_VALUES = /\A(false|off|no|0)\z/i
+
   def to_bool
-    if match?(/\Atrue\z/i)
+    if match?(TRUTHY_VALUES)
       return true
-    elsif match?(/\Afalse\z/i) || strip.empty?
+    elsif match?(FALSY_VALUES) || strip.empty?
       return false
     end
 
